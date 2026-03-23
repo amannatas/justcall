@@ -16,10 +16,8 @@ class MainActivity : AppCompatActivity() {
 
         tvDialedNumber = findViewById(R.id.tvDialedNumber)
 
-        // 1. Setup Dial Pad
         setupDialButtons()
 
-        // 2. Backspace
         findViewById<ImageButton>(R.id.btnBackspace).setOnClickListener {
             if (currentNumber.isNotEmpty()) {
                 currentNumber.deleteAt(currentNumber.length - 1)
@@ -27,7 +25,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 3. Start Outgoing Call Screen (Simulation)
         findViewById<FloatingActionButton>(R.id.btnMakeCall).setOnClickListener {
             val target = currentNumber.toString()
             if (target.isNotEmpty()) {
@@ -48,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         for (id in buttons) {
             findViewById<Button>(id).setOnClickListener {
                 val btn = it as Button
-                // FIX: Sirf tabhi append karo agar length 10 se kam ho
                 if (currentNumber.length < 10) {
                     currentNumber.append(btn.text)
                     tvDialedNumber.text = currentNumber.toString()

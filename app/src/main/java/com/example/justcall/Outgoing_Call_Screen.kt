@@ -15,8 +15,6 @@ class Outgoing_Call_Screen : AppCompatActivity() {
 
         val number = intent.getStringExtra("PHONE_NUMBER")
         findViewById<TextView>(R.id.tvDialedNumber).text = number
-
-        // 3 Second baad apne aap Active screen par le jao (Simulation)
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, Incoming_Call_Screen::class.java)
             intent.putExtra("PHONE_NUMBER", number)
@@ -25,7 +23,7 @@ class Outgoing_Call_Screen : AppCompatActivity() {
         }, 3000)
 
         findViewById<FloatingActionButton>(R.id.btnEndCall).setOnClickListener {
-            finish() // Call cancel
+            finish()
         }
     }
 }

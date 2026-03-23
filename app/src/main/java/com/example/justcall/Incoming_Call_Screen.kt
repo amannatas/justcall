@@ -14,7 +14,7 @@ class Incoming_Call_Screen : AppCompatActivity() {
 
     private var initialX = 0f
     private var dX = 0f
-    private val SWIPE_DISTANCE_REQUIRED = 250f // Kitna door swipe karna hai (pixels mein)
+    private val SWIPE_DISTANCE_REQUIRED = 250f
     private var vibrator: Vibrator? = null
     private val handler = Handler(Looper.getMainLooper())
 
@@ -29,15 +29,12 @@ class Incoming_Call_Screen : AppCompatActivity() {
         val btnAccept = findViewById<FloatingActionButton>(R.id.btnAccept)
         val btnReject = findViewById<FloatingActionButton>(R.id.btnReject)
 
-        // 1. Start Effects
         startCallEffects(btnAccept, btnReject)
 
-        // 2. Accept Swipe (Right)
         btnAccept.setOnTouchListener { v, event ->
             handleSwipeLogic(v, event, true, callerId)
         }
 
-        // 3. Reject Swipe (Left)
         btnReject.setOnTouchListener { v, event ->
             handleSwipeLogic(v, event, false, callerId)
         }
@@ -48,7 +45,7 @@ class Incoming_Call_Screen : AppCompatActivity() {
             MotionEvent.ACTION_DOWN -> {
                 initialX = view.x
                 dX = view.x - event.rawX
-                view.animate().cancel() // Bounce roko
+                view.animate().cancel()
             }
             MotionEvent.ACTION_MOVE -> {
                 view.x = event.rawX + dX
@@ -57,21 +54,18 @@ class Incoming_Call_Screen : AppCompatActivity() {
                 val traveledDistance = view.x - initialX
 
                 if (isAccept && traveledDistance > SWIPE_DISTANCE_REQUIRED) {
-                    // ACCEPTED: Right swipe
                     stopAll()
                     val intent = Intent(this, Active_Call_Screen::class.java)
                     intent.putExtra("PHONE_NUMBER", callerId)
                     startActivity(intent)
                     finish()
                 } else if (!isAccept && traveledDistance < -SWIPE_DISTANCE_REQUIRED) {
-                    // REJECTED: Left swipe
                     stopAll()
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
                     finish()
                 } else {
-                    // RESET: Wapas apni jagah
                     view.animate().x(initialX).translationY(0f).setDuration(300).start()
                 }
             }
