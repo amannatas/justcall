@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "762052212946",
+    "project_id": "justcall-9ded8",
+    "storage_bucket": "justcall-9ded8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762052212946:android:54206125aa3bedbae9950b",
+        "android_client_info": {
+          "package_name": "com.example.justcall"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdRAkyKhEIReYuzh11wTafNQFYUrAe41c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

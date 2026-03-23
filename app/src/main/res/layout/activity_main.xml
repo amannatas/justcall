@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0A"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/displaySection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvDialedNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter Number"
+            android:textColorHint="#4DFFFFFF"
+            android:textColor="#FFFFFF"
+            android:textSize="42sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Add to Contacts"
+            android:textColor="#32D74B"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="30dp"
+        app:cardBackgroundColor="#1C1C1E"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displaySection"
+        app:layout_constraintVertical_bias="0.9">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignMargins"
+            android:columnCount="3"
+            android:padding="16dp"
+            android:rowCount="4">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="1"
+                android:id="@+id/btn1"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="2"
+                android:id="@+id/btn2"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="3"
+                android:id="@+id/btn3"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="4"
+                android:id="@+id/btn4"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="5"
+                android:id="@+id/btn5"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="6"
+                android:id="@+id/btn6"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="7"
+                android:id="@+id/btn7"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="8"
+                android:id="@+id/btn8"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="9"
+                android:id="@+id/btn9"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="*"
+                android:id="@+id/btnStar"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="0"
+                android:id="@+id/btn0"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="#"
+                android:id="@+id/btnHash"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp" />
+
+            <View android:layout_width="0dp" android:layout_height="20dp" android:layout_columnWeight="1" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnMakeCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:backgroundTint="#32D74B"
+                app:fabCustomSize="72dp"
+                app:maxImageSize="32dp"
+                app:srcCompat="@android:drawable/ic_menu_call"
+                app:tint="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/btnBackspace"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@android:drawable/ic_input_delete"
+                app:tint="#80FFFFFF" />
+
+        </GridLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
