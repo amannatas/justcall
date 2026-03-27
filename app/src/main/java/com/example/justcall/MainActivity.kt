@@ -9,9 +9,11 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    
     private lateinit var tvDialedNumber: TextView
     private lateinit var dialerLayout: ConstraintLayout
     private lateinit var fragmentContainer: FrameLayout
@@ -21,42 +23,39 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. Mandatory Permissions Request (Assignment Rule)
-        [span_2](start_span)PermissionManager.checkAndRequestPermissions(this)[span_2](end_span)
+        // 1. App start hote hi saari Permissions mangna (Crucial for Assignment)
+        PermissionManager.checkAndRequestPermissions(this)
 
-        // UI Initializations
+        // UI Binding
         tvDialedNumber = findViewById(R.id.tvDialedNumber)
-        dialerLayout = findViewById(R.id.dialer_layout)
+        dialerLayout = findViewById(R.id.dialer_layout) // Ye tera original dialer layout hai
         fragmentContainer = findViewById(R.id.fragment_container)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         setupDialButtons()
 
-        // 2. Bottom Navigation Logic
+        // 2. Bottom Navigation Logic (Fragment Switching)
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_dialer -> {
+                    // Dialer dikhao, baki fragments hide karo
                     dialerLayout.visibility = View.VISIBLE
-                    // Hide any active fragment if necessary
+                    fragmentContainer.visibility = View.GONE
                     true
                 }
                 R.id.nav_logs -> {
-                    dialerLayout.visibility = View.GONE
-                    // Start Call Log Activity (Simpler approach for your setup)
-                    [span_3](start_span)startActivity(Intent(this, CallHistoryActivity::class.java))[span_3](end_span)
+                    loadFragment(CallLogFragment())
                     true
                 }
                 R.id.nav_contacts -> {
-                    dialerLayout.visibility = View.GONE
-                    // Start Contact Activity
-                    [span_4](start_span)startActivity(Intent(this, ContactActivity::class.java))[span_4](end_span)
+                    loadFragment(ContactFragment())
                     true
                 }
                 else -> false
             }
         }
 
-        // 3. Backspace Button
+        // 3. Backspace Logic
         findViewById<ImageButton>(R.id.btnBackspace).setOnClickListener {
             if (currentNumber.isNotEmpty()) {
                 currentNumber.deleteAt(currentNumber.length - 1)
@@ -64,26 +63,35 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 4. REAL CALL BUTTON (Highest Priority Requirement)
+        // 4. REAL CALL BUTTON (Intent.ACTION_CALL)
         findViewById<View>(R.id.btnMakeCall).setOnClickListener {
             val target = currentNumber.toString()
             if (target.isNotEmpty()) {
-                [span_5](start_span)[span_6](start_span)makeRealPhoneCall(target)[span_5](end_span)[span_6](end_span)
+                makeRealPhoneCall(target)
             } else {
-                Toast.makeText(this, "Number enter karo!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Pehle number dial karein!", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    // Fragment load karne ka function
+    private fun loadFragment(fragment: Fragment) {
+        dialerLayout.visibility = View.GONE
+        fragmentContainer.visibility = View.VISIBLE
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+
     private fun makeRealPhoneCall(phoneNumber: String) {
-        [span_7](start_span)val callIntent = Intent(Intent.ACTION_CALL)[span_7](end_span)
+        val callIntent = Intent(Intent.ACTION_CALL)
         callIntent.data = Uri.parse("tel:$phoneNumber")
 
-        // Runtime Permission Check for Security
+        // Permission Check before triggering the call
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            [span_8](start_span)startActivity(callIntent) // Triggers system's real dialer[span_8](end_span)
+            startActivity(callIntent) // Ye asli calling screen pe le jayega
         } else {
-            [span_9](start_span)ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CALL_PHONE), 101)[span_9](end_span)
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CALL_PHONE), 101)
         }
     }
 
